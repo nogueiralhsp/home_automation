@@ -1,0 +1,35 @@
+.resume-under-header {
+    min-width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 200px;
+}
+.navigation-menu-message {
+    background: rgb(0, 26, 51);
+    flex-grow: 1;
+    color: white;
+    width: 30%;
+}
+.square-box-navigation {
+    color: white;
+    display: flex;
+    flex-grow: 1;
+}
+.navigation-squares {
+    // height: 125px;
+    background-color: #ffb366;
+    flex-grow: 1;
+    border-left-style: solid;
+    padding-left: 10px;
+}
+
+//forcast square menu
+.forcast-square{
+
+}
+
+.forcast-square-top *{
+    color: black;
+    margin: 0;
+}
