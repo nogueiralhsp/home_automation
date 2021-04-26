@@ -18,12 +18,14 @@ class NavigationMenu extends React.Component {
     }
     componentDidMount() {
 
+
+
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
 
-        fetch(`https://api.weatherapi.com/v1/forecast.json?key=45bca90d1a69476cb4381433212604&q=Bishop's Stortford&days=5&aqi=no&alerts=no`, requestOptions)
+        fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=Bishop's Stortford&days=5&aqi=no&alerts=no`, requestOptions)
             .then(response => response.json())
             .then(result => {
 
