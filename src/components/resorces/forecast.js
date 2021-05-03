@@ -17,9 +17,6 @@ class NavigationMenu extends React.Component {
 
     }
     componentDidMount() {
-
-
-
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
