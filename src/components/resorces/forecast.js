@@ -14,7 +14,6 @@ class NavigationMenu extends React.Component {
                 daily_chance_of_rain: ''
             }],
         };
-
     }
     componentDidMount() {
         var requestOptions = {
@@ -25,22 +24,37 @@ class NavigationMenu extends React.Component {
         fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=Bishop's Stortford&days=5&aqi=no&alerts=no`, requestOptions)
             .then(response => response.json())
             .then(result => {
-
+                // console.log(result);
+                if (!result.location) {
+                    this.setState((prevState) => {
+                        return {
+                            cityName: ' **** forcast api down **** ',
+                        };
+                    });
+                } else {
+                    this.setState((prevState) => {
+                        return {
+                            cityName: result.location.name,
+                            currentTemperature: result.current.temp_c,
+                            forecast: result.forecast.forecastday.map((item) => ({
+    
+                                date: item.date,
+                                mintemp_c: item.day.mintemp_c,
+                                maxtemp_c: item.day.maxtemp_c,
+                                daily_chance_of_rain: item.day.daily_chance_of_rain
+    
+                            }))
+                        };
+                    });   
+                }
+            }).catch(
                 this.setState((prevState) => {
                     return {
-                        cityName: result.location.name,
-                        currentTemperature: result.current.temp_c,
-                        forecast: result.forecast.forecastday.map((item) => ({
-
-                            date: item.date,
-                            mintemp_c: item.day.mintemp_c,
-                            maxtemp_c: item.day.maxtemp_c,
-                            daily_chance_of_rain: item.day.daily_chance_of_rain
-
-                        }))
+                        cityName: "API Off",
+                        currentTemperature: "API Off",
                     };
-                });
-            })
+                })
+            )
     }
 
     render() {
@@ -63,10 +77,10 @@ class NavigationMenu extends React.Component {
                                 <th>Min Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.mintemp_c}°C</th>)}
                             </tr>
                             <tr>
-                            <th>Max Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.maxtemp_c}°C</th>)}
+                                <th>Max Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.maxtemp_c}°C</th>)}
                             </tr>
                             <tr>
-                            <th>Rain Chance</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.daily_chance_of_rain}%</th>)}
+                                <th>Rain Chance</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.daily_chance_of_rain}%</th>)}
                             </tr>
                         </tbody>
 

@@ -55,7 +55,7 @@ class NavigationMenu extends React.Component {
           </div>
           <div className="navigation-squares">
             <h3>Thermostat SP</h3>
-            <p>Temp.: {this.state.count} °C</p>
+            <p>Room Temp.: {this.state.count} °C</p>
             <button onClick={this.handlerMinusOne}>-</button>
             <button onClick={this.handlerAddOne}>+</button>
             <button onClick={this.handlerReset}>Rst</button>
