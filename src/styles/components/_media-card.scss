@@ -1,0 +1,32 @@
+//Media Container Styles
+.media_card{
+    margin: 10px;
+
+}
+
+.card_root{
+    display: 'flex';
+    border: solid;
+    border-color: red;
+
+}
+.details {
+    display: 'flex';
+    flex-direction: 'column';
+  }
+.content {
+    flex: '1 0 auto'
+  }
+.cover {
+    width: 151px,
+  }
+.controls {
+    display: 'flex';
+    align-items: 'center';
+    // padding-left: theme.spacing(1);
+    // padding-bottom: theme.spacing(1);
+  }
+.playIcon {
+    height:38 px;
+    width: 38px
+  }

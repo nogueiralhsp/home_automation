@@ -2,6 +2,7 @@
 import Content from './Content'
 import Footer from './Footer'
 import Header from './Header'
+import Garage from './GarageRoom'
 import APIContent from './APIContent'
 import NavigationMenu from './NavigationMenu'
 
@@ -15,6 +16,7 @@ export {
      Content,
      Footer,
      Forcast,
+     Garage,
      Header,
      Messages,
      NavigationMenu
