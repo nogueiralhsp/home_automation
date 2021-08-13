@@ -9,12 +9,14 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
-  
+
 }));
 
-export default function MediaControlCard() {
+export default function HouseFront() {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -23,23 +25,23 @@ export default function MediaControlCard() {
       <div className="details">
         <CardContent className="content">
           <Typography component="h5" variant="h5">
-            Live From Space
+            House
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+          <Typography variant="h6" color="textSecondary">
+            Lights
           </Typography>
+          <div>
+
+            <IconButton>
+              <WbIncandescentIcon /> Driveway {true === !true ? 'On' : 'Off'}
+            </IconButton>
+          </div>
+          <div>
+            <IconButton>
+              <WbIncandescentIcon /> Door {true === true ? 'On' : 'Off'}
+            </IconButton>
+          </div>
         </CardContent>
-        <div className="controls">
-          <IconButton aria-label="previous">
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-          </IconButton>
-          <IconButton aria-label="play/pause">
-            <PlayArrowIcon className="playIcon" />
-          </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-          </IconButton>
-        </div>
       </div>
       <CardMedia
         className="cover"
