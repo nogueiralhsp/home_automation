@@ -1,34 +1,30 @@
 //Media Container Styles
-.media_card{
-    margin: 10px;
-
+.media_card {
+  margin: 10px;
 }
 
-.card_root{
-    display: 'flex';
-    border: solid;
-    border-color: rgb(231, 221, 221);
-    min-width: 250px;
-    min-height: 350px;
-
+.card_root {
+  display: "flex";
+  border: solid;
+  border-color: rgb(231, 221, 221);
+  min-width: 250px;
+  min-height: 350px;
 }
 .details {
-    display: 'flex';
-    flex-direction: 'column';
-  }
+  display: "flex";
+  flex-direction: "column";
+}
 .content {
-    flex: '1 0 auto'
-  }
-.cover {
-    width: 151px,
-  }
-.controls {
-    display: 'flex';
-    align-items: 'center';
-    // padding-left: theme.spacing(1);
-    // padding-bottom: theme.spacing(1);
-  }
-.playIcon {
-    height:38 px;
-    width: 38px
-  }
+  flex: "1 0 auto";
+}
+
+.iconStatusOn {
+  color: green;
+}
+
+.iconStatusOff {
+  color: red;
+}
+.card-items{
+  margin: 10px;
+}

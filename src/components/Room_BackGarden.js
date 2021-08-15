@@ -30,34 +30,31 @@ export default function BackGarden() {
             Lights
           </Typography>
           <div>
-
             <IconButton>
-              <WbIncandescentIcon /> Upper {true === !true ? 'On' : 'Off'}
+              {true ? <WbIncandescentIcon className="iconStatusOn" /> : <WbIncandescentIcon className="iconStatusOff" />} Upper Level
             </IconButton>
           </div>
           <div>
             <IconButton>
-              <WbIncandescentIcon /> Lower {true === true ? 'On' : 'Off'}
+              {false ? <WbIncandescentIcon className="iconStatusOn" /> : <WbIncandescentIcon className="iconStatusOff" />} Lower Level
             </IconButton>
           </div>
           <div>
             <IconButton>
-              <WbIncandescentIcon /> Hot Tub {true === true ? 'On' : 'Off'}
+              {false ? <WbIncandescentIcon className="iconStatusOn" /> : <WbIncandescentIcon className="iconStatusOff" />}  Hot Tub
             </IconButton>
           </div>
-
           <Typography variant="h6" color="textSecondary">
             Doors
           </Typography>
           <div>
-
             <IconButton>
               <MeetingRoomIcon /> Front Door {true === !true ? 'Open' : 'Close'}
             </IconButton>
           </div>
           <div>
             <IconButton>
-              <MeetingRoomIcon /> Back Door {true === true ? 'Open' : 'Close'}
+              <MeetingRoomIcon /> Back Door {true ? 'Open' : 'Close'}
             </IconButton>
           </div>
         </CardContent>
