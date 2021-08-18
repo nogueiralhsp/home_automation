@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Messages, Forcast
+  Messages
 } from '../components'
 
 class NavigationMenu extends React.Component {
@@ -42,7 +42,7 @@ class NavigationMenu extends React.Component {
 
   render() {
     return (
-      <div className="resume-under-header">
+      <div className="navigation-menu">
         <div className="navigation-menu-message">
 
           <h3> Good Morning! <br /> Bom dia! </h3>
@@ -51,20 +51,11 @@ class NavigationMenu extends React.Component {
         </div>
         <div className="square-box-navigation">
           <div className="navigation-squares">
-            <Forcast />
-          </div>
-          <div className="navigation-squares">
             <h3>Thermostat SP</h3>
             <p>Room Temp.: {this.state.count} °C</p>
             <button onClick={this.handlerMinusOne}>-</button>
             <button onClick={this.handlerAddOne}>+</button>
             <button onClick={this.handlerReset}>Rst</button>
-          </div>
-          <div className="navigation-squares">
-            <h3>Electrical Usage</h3>
-          </div>
-          <div className="navigation-squares">
-            <h3>Gas Usage</h3>
           </div>
         </div>
       </div>

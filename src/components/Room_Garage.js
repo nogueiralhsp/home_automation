@@ -1,14 +1,6 @@
 import React from 'react';
+import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,48 +12,21 @@ export default function Garage() {
   const theme = useTheme();
 
   return (
-    <Card className="card_root">
-      <div className="details">
-        <CardContent className="content">
-          <Typography component="h5" variant="h5">
-            Garage
-          </Typography>
-          <Typography variant="h6" color="textSecondary">
-            Lights
-          </Typography>
-          <div>
-
-            <IconButton>
-              <WbIncandescentIcon /> Light 1 {true === !true ? 'On' : 'Off'}
-            </IconButton>
-          </div>
-          <div>
-            <IconButton>
-              <WbIncandescentIcon /> Light 2 {true === true ? 'On' : 'Off'}
-            </IconButton>
-          </div>
-
-          <Typography variant="h6" color="textSecondary">
-            Doors
-          </Typography>
-          <div>
-
-            <IconButton>
-              <MeetingRoomIcon /> Front Door {true === !true ? 'Open' : 'Close'}
-            </IconButton>
-          </div>
-          <div>
-            <IconButton>
-              <MeetingRoomIcon /> Back Door {true === true ? 'Open' : 'Close'}
-            </IconButton>
-          </div>
-        </CardContent>
+    <div className="card_root">
+      <div className='card-title'>
+        <h2>Garage</h2>
       </div>
-      <CardMedia
-        className="cover"
-        image="/static/images/cards/live-from-space.jpg"
-        title="Live from space album cover"
-      />
-    </Card>
+
+      <div className='card-items'>
+        <h3>Lights</h3>
+        <a href="" className='button-test'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 1 {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button-test'><MeetingRoomIcon className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 2 {true === !true ? ' = On' : ' = Off'}</a>
+      </div>
+      <div className='card-items'>
+        <h3>Doors</h3>
+        <a href="" className='button-test'><FaDoorClosed className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Front Door {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button-test'><FaDoorOpen className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Back Door {true === !true ? ' = On' : ' = Off'}</a>
+      </div>
+    </div>
   );
 }

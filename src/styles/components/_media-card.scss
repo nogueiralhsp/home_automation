@@ -1,33 +1,27 @@
 //Media Container Styles
-.media_card {
-  margin: 10px;
+.card_root {
+  display: "block";
+  border-radius: 1%;
+  border-color: #002c1b;
+  background:   #004d4d;
+  margin: $vs-size;
+  min-width: 250px;
 }
 
-.card_root {
-  display: "flex";
-  border: solid;
-  border-color: rgb(231, 221, 221);
-  min-width: 250px;
-  min-height: 350px;
-}
-.details {
-  display: "flex";
-  flex-direction: "column";
-}
-.content {
-  flex: "1 0 auto";
+.card-title{
+  padding: $vs-size;
 }
 
 .iconStatusOn {
-  color: green;
+  color: $green-on;
 }
 
 .iconStatusOff {
-  color: red;
+  color: $red-off;
 }
 .card-items{
-  margin: 10px;
-  color:inherit;
+  display: flex;
+  flex-direction: column;
 }
 
 .test_text{

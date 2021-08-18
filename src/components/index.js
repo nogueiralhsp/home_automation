@@ -6,6 +6,7 @@ import Header from './Header'
 
 import APIContent from './APIContent'
 import NavigationMenu from './NavigationMenu'
+import Temperature_Control from './Temperature_Control'
 
 // Rooms
 import BackGarden from './Room_BackGarden'
@@ -25,5 +26,6 @@ export {
      Header,
      HouseFront,
      Messages,
-     NavigationMenu
+     NavigationMenu,
+     Temperature_Control
 }
