@@ -1,4 +1,5 @@
 import React from 'react'
+import {FaArrowUp, FaArrowDown} from 'react-icons/fa'
 
 class NavigationMenu extends React.Component {
     constructor(props) {
@@ -44,11 +45,11 @@ class NavigationMenu extends React.Component {
         return (
             <div className="">
                 <h3>Thermostat </h3>
-                <p>Room Temperature: 25 °C</p>
-                <p>Set Point: {this.state.count} °C</p>
-                <a href="" className='button-test' onClick={this.handlerMinusOne}>-</a>
-                <a href="" className='button-test' onClick={this.handlerAddOne}>+</a>
-                <a href="" className='button-test' onClick={this.handlerReset}>Rst</a>
+                <h4>Room Temperature: 25 °C</h4>
+                <h4>Set Point: {this.state.count} °C</h4>
+                <a href="" className='button' onClick={this.handlerMinusOne}><FaArrowDown/></a>
+                <a href="" className='button' onClick={this.handlerAddOne}><FaArrowUp/></a>
+                <a href="" className='button' onClick={this.handlerReset}>Rst</a>
             </div>
         );
     }

@@ -44,19 +44,9 @@ class NavigationMenu extends React.Component {
     return (
       <div className="navigation-menu">
         <div className="navigation-menu-message">
-
           <h3> Good Morning! <br /> Bom dia! </h3>
           <Messages />
 
-        </div>
-        <div className="square-box-navigation">
-          <div className="navigation-squares">
-            <h3>Thermostat SP</h3>
-            <p>Room Temp.: {this.state.count} °C</p>
-            <button onClick={this.handlerMinusOne}>-</button>
-            <button onClick={this.handlerAddOne}>+</button>
-            <button onClick={this.handlerReset}>Rst</button>
-          </div>
         </div>
       </div>
     );

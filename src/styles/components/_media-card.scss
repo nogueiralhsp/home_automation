@@ -1,15 +1,18 @@
 //Media Container Styles
 .card_root {
   display: "block";
-  border-radius: 1%;
+  border-radius: $vs-size;
   border-color: #002c1b;
   background:   #004d4d;
   margin: $vs-size;
   min-width: 250px;
+  padding: $s-size;
 }
 
 .card-title{
-  padding: $vs-size;
+  // padding: $vs-size;
+  border-bottom: double;
+  border-color: $off-white;
 }
 
 .iconStatusOn {
@@ -22,9 +25,9 @@
 .card-items{
   display: flex;
   flex-direction: column;
+  padding-bottom: $vs-size;
 }
-
-.test_text{
-  text-decoration: none;
-  color:red;
+.card-items h3{
+  text-decoration: underline;
+  text-underline-offset: .25rem;
 }

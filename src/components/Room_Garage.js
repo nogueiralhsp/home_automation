@@ -19,13 +19,13 @@ export default function Garage() {
 
       <div className='card-items'>
         <h3>Lights</h3>
-        <a href="" className='button-test'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 1 {true === !true ? ' = On' : ' = Off'}</a>
-        <a href="" className='button-test'><MeetingRoomIcon className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 2 {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 1 {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button'><MeetingRoomIcon className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 2 {true === !true ? ' = On' : ' = Off'}</a>
       </div>
       <div className='card-items'>
         <h3>Doors</h3>
-        <a href="" className='button-test'><FaDoorClosed className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Front Door {true === !true ? ' = On' : ' = Off'}</a>
-        <a href="" className='button-test'><FaDoorOpen className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Back Door {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button'><FaDoorClosed className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Front Door {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button'><FaDoorOpen className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Back Door {true === !true ? ' = On' : ' = Off'}</a>
       </div>
     </div>
   );

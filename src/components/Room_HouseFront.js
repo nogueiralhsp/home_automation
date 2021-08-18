@@ -16,8 +16,8 @@ export default function HouseFront() {
       </div>
       <div className='card-items'>
         <h3>Lights</h3>
-        <a href="" className='button-test'><FaLightbulb className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Front Door {true ? ' = On' : ' = Off'}</a>
-        <a href="" className='button-test'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Driveway {true === !true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button'><FaLightbulb className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Front Door {true ? ' = On' : ' = Off'}</a>
+        <a href="" className='button'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Driveway {true === !true ? ' = On' : ' = Off'}</a>
       </div>
     </div>
   );
