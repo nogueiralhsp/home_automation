@@ -1,6 +1,6 @@
-import React from 'react';
-import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa'
-
+import React, { useEffect } from 'react';
+import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa';
+const MINUTES_MS = 1000
 
 class Garage extends React.Component {
 
@@ -9,10 +9,19 @@ class Garage extends React.Component {
     this.state = {
       room_temperature: 0
     }
+    
   }
+
   componentDidMount() {
     // var current_room_temperature = 0
 
+    
+
+      this.interval = setInterval(() => this.temperatureUpdate(),2000)
+
+  }
+
+  temperatureUpdate(){
     var requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -23,14 +32,15 @@ class Garage extends React.Component {
       .then(result => {
         const current_room_temperature = result.statusValue
         this.setState((prevState) => {
-          return{
-            room_temperature:current_room_temperature
+          return {
+            room_temperature: current_room_temperature
           }
         })
       })
       .catch(error => console.log('error', error));
-
   }
+
+
   render() {
     return (
       <div className="card_root">
@@ -39,7 +49,7 @@ class Garage extends React.Component {
         </div>
         <div className='card-items'>
           <h3>Room Temperature</h3>
-          <p>{this.state.room_temperature}</p>
+          <p>Current Room Temperature <h4>{this.state.room_temperature} °C</h4></p>
         </div>
         <div className='card-items'>
           <h3>Lights</h3>
