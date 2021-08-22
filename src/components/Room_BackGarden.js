@@ -6,7 +6,9 @@ class BackGarden extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      upperLevelLightsOn: false
+      upperLevelLightsOn: false,
+      lowerLevelLightsOn: false,
+      hotTubCeilingLightsOn: false
     }
   }
 
@@ -32,8 +34,33 @@ class BackGarden extends React.Component {
             <FaLightbulb className={this.state.upperLevelLightsOn ? 'iconStatusOn' : 'iconStatusOff'} />
             {'\u00A0'}Upper Level {this.state.upperLevelLightsOn ? ' = On' : ' = Off'}
           </a>
-          <a href="" className='button'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Lower Level {true === !true ? ' = On' : ' = Off'}</a>
-          <a href="" className='button'><FaLightbulb className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Hot Tub {true ? ' = On' : ' = Off'}</a>
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return {
+                  lowerLevelLightsOn: !this.state.lowerLevelLightsOn
+                }
+              })
+            }}>
+            <FaLightbulb className={this.state.lowerLevelLightsOn ? 'iconStatusOn' : 'iconStatusOff'} />
+            {'\u00A0'}Lower Level {this.state.lowerLevelLightsOn ? ' = On' : ' = Off'}
+          </a>
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return {
+                  hotTubCeilingLightsOn: !this.state.hotTubCeilingLightsOn
+                }
+              })
+            }}
+          >
+            <FaLightbulb className={this.state.hotTubCeilingLightsOn ? 'iconStatusOn' : 'iconStatusOff'} />
+            {'\u00A0'}Hot Tub {this.state.hotTubCeilingLightsOn ? ' = On' : ' = Off'}
+          </a>
         </div>
       </div>
     );
