@@ -8,7 +8,11 @@ class Garage extends React.Component {
     super(props)
     this.state = {
       room_temperature: 100,
-      lightOne: false
+      lightOne: false,
+      lightTwo: false,
+      frontDoorOpen: true,
+      backDoorOpen: true,
+      
     }
   }
 
@@ -63,16 +67,58 @@ class Garage extends React.Component {
             }}
           >
             <FaLightbulb className={this.state.lightOne ? 'iconStatusOn' : 'iconStatusOff'} />
-            Light 1 {this.state.lightOne ? ' = On' : ' = Off'}
+            {'\u00A0'}Light 1 {this.state.lightOne ? ' = On' : ' = Off'}
+          </a>
+          
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return{
+                  lightTwo:!this.state.lightTwo
+                }
+              })
+            }}
+          >
+            <FaLightbulb className={this.state.lightTwo ? 'iconStatusOn ' : 'iconStatusOff '} />
+            {'\u00A0'}Light 2 {this.state.lightTwo ? ' = On' : ' = Off'}
           </a>
 
-
-          <a href="" className='button'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 2 {true === !true ? ' = On' : ' = Off'}</a>
         </div>
         <div className='card-items'>
           <h3>Doors</h3>
-          <a href="" className='button'><FaDoorClosed className={true ? 'iconStatusOn' : 'iconStatusOff'} /> Front Door {true === !true ? ' = On' : ' = Off'}</a>
-          <a href="" className='button'><FaDoorOpen className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Back Door {true === !true ? ' = On' : ' = Off'}</a>
+
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return{
+                  frontDoorOpen:!this.state.frontDoorOpen
+                }
+              })
+            }}
+          >
+            <FaDoorOpen className={this.state.frontDoorOpen ? ' iconStatusOn ' : ' iconStatusOff'} />
+            {'\u00A0'}Front Door {this.state.frontDoorOpen ? ' = Closed' : ' = Opened'}
+          </a>
+
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return{
+                  backDoorOpen:!this.state.backDoorOpen
+                }
+              })
+            }}
+          >
+            <FaDoorOpen className={this.state.backDoorOpen ? ' iconStatusOn ' : ' iconStatusOff'} />
+            {'\u00A0'}Back Door {this.state.backDoorOpen ? ' = Closed' : ' = Opened'}
+          </a>
+          
         </div>
       </div>
     );
