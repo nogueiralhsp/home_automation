@@ -7,21 +7,20 @@ class Garage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      room_temperature: 0
+      room_temperature: 100,
+      lightOne: false
     }
-    
   }
 
   componentDidMount() {
-    // var current_room_temperature = 0
 
-    
-
-      this.interval = setInterval(() => this.temperatureUpdate(),2000)
+    this.temperatureUpdate()//calls for temperature on start of the page
+    this.interval = setInterval(() => this.temperatureUpdate(), MINUTES_MS)//calls refresh every 5 seconds
 
   }
 
-  temperatureUpdate(){
+  // reads the last post from data base and updates temperatyre on screen, time set on set
+  temperatureUpdate() {
     var requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -40,7 +39,6 @@ class Garage extends React.Component {
       .catch(error => console.log('error', error));
   }
 
-
   render() {
     return (
       <div className="card_root">
@@ -49,11 +47,26 @@ class Garage extends React.Component {
         </div>
         <div className='card-items'>
           <h3>Room Temperature</h3>
-          <p>Current Room Temperature <h4>{this.state.room_temperature} °C</h4></p>
+          <p>Current Room Temperature <br />{this.state.room_temperature === 100 ? `loading...` : `${this.state.room_temperature} °C`}</p>
         </div>
         <div className='card-items'>
           <h3>Lights</h3>
-          <a href="" className='button'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 1 {true === !true ? ' = On' : ' = Off'}</a>
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return{
+                  lightOne:!this.state.lightOne
+                }
+              })
+            }}
+          >
+            <FaLightbulb className={this.state.lightOne ? 'iconStatusOn' : 'iconStatusOff'} />
+            Light 1 {this.state.lightOne ? ' = On' : ' = Off'}
+          </a>
+
+
           <a href="" className='button'><FaLightbulb className={true === !true ? 'iconStatusOn' : 'iconStatusOff'} /> Light 2 {true === !true ? ' = On' : ' = Off'}</a>
         </div>
         <div className='card-items'>
