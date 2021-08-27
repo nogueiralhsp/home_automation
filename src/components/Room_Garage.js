@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa';
-const TEMPERATURE_UPDATE_MS = 2000
+const UPDATE_MS = 2000
 
 class Garage extends React.Component {
 
@@ -12,16 +12,15 @@ class Garage extends React.Component {
       lightTwo: false,
       frontDoorOpen: true,
       backDoorOpen: true,
-
     }
   }
 
   componentDidMount() {
-
+    this.lightOneUpdatedStatus()
     this.temperatureUpdate()//calls for temperature on start of the page
-    this.interval = setInterval(() => this.temperatureUpdate(), TEMPERATURE_UPDATE_MS)//calls refresh every TEMPERATURE_UPDATE_MS milliseconds
-    this.interval = setInterval(() => this.digitalDevicesGetStatus(), TEMPERATURE_UPDATE_MS)//calls refresh every TEMPERATURE_UPDATE_MS milliseconds
-
+    this.interval = setInterval(() => {
+      this.temperatureUpdate()
+    }, UPDATE_MS)//calls refresh every UPDATE_MS milliseconds
   }
 
   // reads the last post from data base and updates temperatyre on screen, time set on set
@@ -44,18 +43,30 @@ class Garage extends React.Component {
       .catch(error => console.log('error', error));
   }
 
-  digitalDevicesGetStatus() {
+  lightOneUpdatedStatus() {
     var requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/devices/digital", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
+    fetch("https://my-home-automation-api.herokuapp.com/device/6128d9c2274a6f001670e7b9", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        this.setState(()=>{
+          return{
+            lightOne:result.statusBooleanValue
+          }
+        })
+      })
       .catch(error => console.log('error', error));
   }
 
+  lightOneHandler(){
+
+  }
+
+  
   render() {
     return (
       <div className="card_root">
@@ -72,11 +83,13 @@ class Garage extends React.Component {
             className='button'
             onClick={(e) => {
               e.preventDefault()
+              e.preventDefault()
               this.setState((prevState) => {
                 return {
                   lightOne: !this.state.lightOne
                 }
               })
+
             }}
           >
             <FaLightbulb className={this.state.lightOne ? 'iconStatusOn' : 'iconStatusOff'} />
