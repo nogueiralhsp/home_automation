@@ -20,6 +20,7 @@ class Garage extends React.Component {
     this.temperatureUpdate()//calls for temperature on start of the page
     this.interval = setInterval(() => {
       this.temperatureUpdate()
+      this.lightOneUpdatedStatus()
     }, UPDATE_MS)//calls refresh every UPDATE_MS milliseconds
   }
 
@@ -52,21 +53,48 @@ class Garage extends React.Component {
     fetch("https://my-home-automation-api.herokuapp.com/device/6128d9c2274a6f001670e7b9", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
-        this.setState(()=>{
-          return{
-            lightOne:result.statusBooleanValue
+        // console.log(result)
+        this.setState(() => {
+          return {
+            lightOne: result.statusBooleanValue
           }
         })
       })
       .catch(error => console.log('error', error));
   }
 
-  lightOneHandler(){
+  lightOneHandler() {
+    this.lightOneUpdatedStatus()
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "device": "6128d9c2274a6f001670e7b9",
+      "statusValue": "non",
+      "statusBooleanValue": !this.state.lightOne,
+      "statusType": "digital"
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+      .then(response => response.text())
+      // .then(result => console.log(result))
+      .catch(error => console.log('error', error));
 
   }
 
-  
+
   render() {
     return (
       <div className="card_root">
@@ -81,14 +109,10 @@ class Garage extends React.Component {
           <h3>Lights</h3>
           <a href=""
             className='button'
+            aria-disabled='true'
             onClick={(e) => {
               e.preventDefault()
-              e.preventDefault()
-              this.setState((prevState) => {
-                return {
-                  lightOne: !this.state.lightOne
-                }
-              })
+              this.lightOneHandler()
 
             }}
           >
@@ -100,6 +124,7 @@ class Garage extends React.Component {
             className='button'
             onClick={(e) => {
               e.preventDefault()
+              this.lightOneHandler()
               this.setState((prevState) => {
                 return {
                   lightTwo: !this.state.lightTwo
