@@ -15,6 +15,7 @@ import HouseFront from './Room_HouseFront'
 // importing resorces 
 import Messages from './resorces/messages'
 import Forcast from './resorces/forecast'
+import LoginUser from './resorces/login_user'
 
 export {
      APIContent,
@@ -25,6 +26,7 @@ export {
      Garage,
      Header,
      HouseFront,
+     LoginUser,
      Messages,
      NavigationMenu,
      Temperature_Control

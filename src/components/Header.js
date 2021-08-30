@@ -1,21 +1,14 @@
 import React from 'react'
-
-import {
-     Messages, Forcast
-} from '../components'
+import { LoginUser } from './index'
 
 
 const Header = () => (
      <header className="header">
           <div>
-               <h2>Test your Home Automation</h2>
+               <h2>Home Automation Project</h2>
                <p>72 Happy Street <br />Springfield</p>
           </div>
-
-          <div className="header-forcast">
-               <Forcast />
-          </div>
-
+          <LoginUser />
      </header>
 );
 

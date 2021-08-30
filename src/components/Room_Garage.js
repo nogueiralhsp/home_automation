@@ -124,7 +124,6 @@ class Garage extends React.Component {
             className='button'
             onClick={(e) => {
               e.preventDefault()
-              this.lightOneHandler()
               this.setState((prevState) => {
                 return {
                   lightTwo: !this.state.lightTwo

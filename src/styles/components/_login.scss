@@ -1,0 +1,17 @@
+.login_area{
+    // border: solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex;
+    max-width: 35%;
+}
+.login_area input{
+    margin-top: $vs-size;
+}
+.login_area_button{
+    // border: solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: $vs-size;
+}

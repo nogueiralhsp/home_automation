@@ -64,7 +64,7 @@ class NavigationMenu extends React.Component {
                     <h3>Current Temperature in</h3>
                     <p>{this.state.cityName} is {this.state.currentTemperature} °C</p>
                 </div>
-                <div className>
+                <div className="forcast-table">
                     <h3>Weather Forecast</h3>
                     <table>
                         <thead>
