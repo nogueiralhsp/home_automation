@@ -12,8 +12,15 @@
 
 .forcast-square-top *{
     margin: 0 0 0 0;
+    // text-align: center;
 }
 
+
+.forcast-table-title {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
 .forcast-table th {
     min-width: 75px;
 }

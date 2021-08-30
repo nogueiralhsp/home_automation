@@ -5,13 +5,22 @@ class NavigationMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cityName: `Bishop's Stortford`,
-            currentTemperature: 0,
+            cityName: ``,
+            condition: {
+                text: "",
+                icon: "",
+                code: 0
+            },
             forecast: [{
                 date: 'test date',
                 maxtemp_c: 0,
                 mintemp_c: 0,
-                daily_chance_of_rain: ''
+                daily_chance_of_rain: '',
+                daily_condition: {
+                    text: "just test",
+                    icon: "",
+                    code: 0
+                }
             }],
         };
     }
@@ -24,7 +33,7 @@ class NavigationMenu extends React.Component {
         fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=cm71ww&days=5&aqi=no&alerts=no`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 if (!result.location) {
                     this.setState((prevState) => {
                         return {
@@ -36,16 +45,25 @@ class NavigationMenu extends React.Component {
                         return {
                             cityName: result.location.name,
                             currentTemperature: result.current.temp_c,
-                            forecast: result.forecast.forecastday.map((item) => ({
-    
-                                date: item.date,
-                                mintemp_c: item.day.mintemp_c,
-                                maxtemp_c: item.day.maxtemp_c,
-                                daily_chance_of_rain: item.day.daily_chance_of_rain
-    
-                            }))
+                            condition: {
+                                text: result.current.condition.text,
+                                icon: result.current.condition.icon,
+                                code: result.current.condition.code,
+                            },
+                            forecast: result.forecast.forecastday.map((item) => (
+                                {
+                                    date: item.date,
+                                    mintemp_c: item.day.mintemp_c,
+                                    maxtemp_c: item.day.maxtemp_c,
+                                    daily_chance_of_rain: item.day.daily_chance_of_rain,
+                                    daily_condition: {
+                                        text: item.day.condition.text,
+                                        icon: item.day.condition.icon,
+                                        code: item.day.condition.code,
+                                    },
+                                }))
                         };
-                    });   
+                    });
                 }
             }).catch(
                 this.setState((prevState) => {
@@ -61,11 +79,14 @@ class NavigationMenu extends React.Component {
         return (
             <div className='forcast-square'>
                 <div className='forcast-square-top'>
-                    <h3>Current Temperature in</h3>
-                    <p>{this.state.cityName} is {this.state.currentTemperature} °C</p>
+                    <h3>Current Temperature in {this.state.cityName}</h3>
+                    <h4>{this.state.currentTemperature} °C {this.state.condition.text}<img src={this.state.condition.icon} alt="icon" height='25px' /> </h4>
+
                 </div>
                 <div className="forcast-table">
-                    <h3>Weather Forecast</h3>
+                    <div className="forcast-table-title">
+                        <h3>Weather Forecast Next 3 Days</h3>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -77,7 +98,7 @@ class NavigationMenu extends React.Component {
                                 <th>Min Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.mintemp_c}°C</th>)}
                             </tr>
                             <tr>
-                                <th>Max Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.maxtemp_c}°C</th>)}
+                                <th>Max Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.maxtemp_c}°C <br /> <img src={forecast.daily_condition.icon} alt="weather icon" height='20px' /></th>)}
                             </tr>
                             <tr>
                                 <th>Rain Chance</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.daily_chance_of_rain}%</th>)}

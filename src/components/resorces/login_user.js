@@ -11,11 +11,11 @@ class LoginUser extends React.Component {
     render() {
         return (
             <div className="login_area">
-            <p>login area under development...</p>
+                <h4 className="under_development">login area under development...</h4>
                 <input type="email" />
                 <input type="password" />
                 <div className="login_area_button">
-                    <a className="button_sign_in" type="submit">Sign In</a>
+                    <a href="" className="button_sign_in" type="submit">Sign In</a>
                 </div>
                 <h4>Don't have a user? Ok, navegate around and make contact if you have any doubt</h4>
             </div>
