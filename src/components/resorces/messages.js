@@ -5,14 +5,12 @@ class NavigationMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'test of message',
-            author:''
+            text: '',
+            author: ''
         };
 
     }
     componentDidMount() {
-        var apiMessage = 'test'
-        
         const numberTest = Math.floor(Math.random() * 1000)
 
         var myHeaders = new Headers();
@@ -26,11 +24,13 @@ class NavigationMenu extends React.Component {
         fetch("https://type.fit/api/quotes", requestOptions)
             .then(response => response.json())
             .then((result) => {
-                apiMessage = result[numberTest].text
+                const apiMessage = result[numberTest].text
+                const apiAuthor = result[numberTest].author
 
                 this.setState((prevState) => {
                     return {
-                        text: apiMessage
+                        text: apiMessage,
+                        author: apiAuthor
                     };
                 });
             })
@@ -42,7 +42,7 @@ class NavigationMenu extends React.Component {
     render() {
         return (
             <div>
-                <p>{this.state.text}</p>
+                <p>Quote of the day: <br />{this.state.text}<br />{this.state.author}</p>
             </div>
         );
     }

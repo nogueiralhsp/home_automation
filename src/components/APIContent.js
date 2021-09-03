@@ -23,7 +23,7 @@ class APIContent extends React.Component {
                <div>
                     <h2>This is my API Content</h2>
                     <p className="api-intro">
-                         {this.state.apiResponse ? ` well done!!! ${this.state.apiResponse}` : `API Offline`}
+                         {this.state.apiResponse ? ` well done!!! ${this.state.apiResponse}` : `API in curret fline`}
                     </p>
 
                     {/* {this.state.visibility ? this.state.buttonText[0] : this.state.buttonText[1]} */}

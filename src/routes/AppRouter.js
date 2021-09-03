@@ -19,9 +19,6 @@ const AppRouter = () => (
             <Content />
         </div>
         <div>
-            <APIContent />
-        </div>
-        <div>
             <Footer />
         </div>
     </BrowserRouter>
