@@ -7,6 +7,7 @@ class BackGarden extends React.Component {
     super(props)
     this.state = {
       upperLevelLightsOn: false,
+      bbqLightsOn:false,
       lowerLevelLightsOn: false,
       hotTubCeilingLightsOn: false
     }
@@ -33,6 +34,20 @@ class BackGarden extends React.Component {
           >
             <FaLightbulb className={this.state.upperLevelLightsOn ? 'iconStatusOn' : 'iconStatusOff'} />
             {'\u00A0'}Upper Level {this.state.upperLevelLightsOn ? ' = On' : ' = Off'}
+          </a>
+          <a href=""
+            className='button'
+            onClick={(e) => {
+              e.preventDefault()
+              this.setState((prevState) => {
+                return {
+                  bbqLightsOn: !this.state.bbqLightsOn
+                }
+              })
+            }}
+          >
+            <FaLightbulb className={this.state.bbqLightsOn ? 'iconStatusOn' : 'iconStatusOff'} />
+            {'\u00A0'}BBQ Area {this.state.bbqLightsOn ? ' = On' : ' = Off'}
           </a>
           <a href=""
             className='button'
