@@ -9,6 +9,7 @@ class Garage extends React.Component {
     this.state = {
       room_temperature: 100,
       lightOne: false,
+      lightOneDeviceId:'6128d9c2274a6f001670e7b9',
       lightTwo: false,
       frontDoorOpen: true,
       backDoorOpen: true,
@@ -50,10 +51,10 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/device/6128d9c2274a6f001670e7b9", requestOptions)
+    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightOneDeviceId}`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        // console.log(result)
+        console.log(result)
         this.setState(() => {
           return {
             lightOne: result.statusBooleanValue
@@ -74,7 +75,7 @@ class Garage extends React.Component {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "device": "6128d9c2274a6f001670e7b9",
+      "device": this.state.lightOneDeviceId,
       "statusValue": "non",
       "statusBooleanValue": !this.state.lightOne,
       "statusType": "digital"
