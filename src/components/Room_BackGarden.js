@@ -65,7 +65,7 @@ class BackGarden extends React.Component {
 
     fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      // .then(result => console.log(result))
       .catch(error => console.log('error', error));
   }
 
