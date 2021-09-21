@@ -1,17 +1,74 @@
 import React from 'react';
 import { FaLightbulb } from 'react-icons/fa'
+const UPDATE_MS = 2000
 
 class BackGarden extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      upperLevelLightsOn: false,
-      bbqLightsOn:false,
+      gardenUpperLevelLightId: '6149904b2f671e0016137975', //# gardenUpperLevelLightId="6149904b2f671e0016137975"
+      gardenUpperLevelLightCurrent: false,
+      bbqLightsOn: false,
       lowerLevelLightsOn: false,
       hotTubCeilingLightsOn: false
     }
   }
+
+  componentDidMount() {
+    this.gardenUpperLevelLightStatus()
+
+    this.interval = setInterval(() => {//calls for temperature on start of the page
+      this.gardenUpperLevelLightStatus()
+    }, UPDATE_MS);
+  }
+
+  // reads the last post from data base and updates on screen, time set on set
+  gardenUpperLevelLightStatus() {
+
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.gardenUpperLevelLightId}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        // console.log(result.statusBooleanValue)
+        this.setState(() => {
+          return {
+            gardenUpperLevelLightCurrent: result.statusBooleanValue
+          }
+        })
+      })
+      .catch(error => console.log('error', error));
+  }
+  gardenUpperLevelLightHandler() {
+    this.gardenUpperLevelLightStatus()
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "device": this.state.gardenUpperLevelLightId,
+      "statusValue": "non",
+      "statusBooleanValue": !this.state.gardenUpperLevelLightCurrent,
+      "statusType": "digital"
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
 
   render() {
     return (
@@ -25,15 +82,11 @@ class BackGarden extends React.Component {
             className='button'
             onClick={(e) => {
               e.preventDefault()
-              this.setState((prevState) => {
-                return {
-                  upperLevelLightsOn: !this.state.upperLevelLightsOn
-                }
-              })
+              this.gardenUpperLevelLightHandler()
             }}
           >
-            <FaLightbulb className={this.state.upperLevelLightsOn ? 'iconStatusOn' : 'iconStatusOff'} />
-            {'\u00A0'}Upper Level {this.state.upperLevelLightsOn ? ' = On' : ' = Off'}
+            <FaLightbulb className={this.state.gardenUpperLevelLightCurrent ? 'iconStatusOn' : 'iconStatusOff'} />
+            {'\u00A0'}Upper Level {this.state.gardenUpperLevelLightCurrent ? ' = On' : ' = Off'}
           </a>
           <a href=""
             className='button'
