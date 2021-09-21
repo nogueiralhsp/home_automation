@@ -33,7 +33,7 @@ class NavigationMenu extends React.Component {
         fetch(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=cm71ww&days=5&aqi=no&alerts=no`, requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 if (!result.location) {
                     this.setState((prevState) => {
                         return {

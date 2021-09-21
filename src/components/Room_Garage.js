@@ -9,7 +9,9 @@ class Garage extends React.Component {
     this.state = {
       room_temperature: 100,
       lightOne: false,
+      lightTwo:false,
       lightOneDeviceId:'6128d9c2274a6f001670e7b9',
+      lightTwoDeviceId:'6148cbe49334480016839378',
       lightTwo: false,
       frontDoorOpen: true,
       backDoorOpen: true,
@@ -18,10 +20,12 @@ class Garage extends React.Component {
 
   componentDidMount() {
     this.lightOneUpdatedStatus()
+    this.lightTwoUpdatedStatus()
     this.temperatureUpdate()//calls for temperature on start of the page
     this.interval = setInterval(() => {
       this.temperatureUpdate()
       this.lightOneUpdatedStatus()
+      this.lightTwoUpdatedStatus()
     }, UPDATE_MS)//calls refresh every UPDATE_MS milliseconds
   }
 
@@ -54,7 +58,7 @@ class Garage extends React.Component {
     fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightOneDeviceId}`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
+        // console.log(result)
         this.setState(() => {
           return {
             lightOne: result.statusBooleanValue
@@ -67,7 +71,7 @@ class Garage extends React.Component {
   lightOneHandler() {
     this.lightOneUpdatedStatus()
     var requestOptions = {
-      method: 'GET',
+      method: 'POST',
       redirect: 'follow'
     };
 
@@ -95,6 +99,54 @@ class Garage extends React.Component {
 
   }
 
+  lightTwoUpdatedStatus(){
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightTwoDeviceId}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        // console.log(result)
+        this.setState(() => {
+          return {
+            lightTwo: result.statusBooleanValue
+          }
+        })
+      })
+      .catch(error => console.log('error', error));
+  }
+
+  lightTwoHandler(){
+    this.lightTwoUpdatedStatus()
+    var requestOptions = {
+      method: 'POST',
+      redirect: 'follow'
+    };
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "device": this.state.lightTwoDeviceId,
+      "statusValue": "non",
+      "statusBooleanValue": !this.state.lightTwo,
+      "statusType": "digital"
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+      .then(response => response.text())
+      // .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
 
   render() {
     return (
@@ -125,11 +177,7 @@ class Garage extends React.Component {
             className='button'
             onClick={(e) => {
               e.preventDefault()
-              this.setState((prevState) => {
-                return {
-                  lightTwo: !this.state.lightTwo
-                }
-              })
+              this.lightTwoHandler()
             }}
           >
             <FaLightbulb className={this.state.lightTwo ? 'iconStatusOn ' : 'iconStatusOff '} />
