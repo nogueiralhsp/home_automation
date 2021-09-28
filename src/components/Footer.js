@@ -5,7 +5,7 @@ const Footer = () => (
           <div className="footer-contacts">
                <h4>Contact</h4>
                <p>Phone: 074 8227 5310</p>
-               <p>Email: <a href="mailto:nogueiralhsp@gmail.com">nogueiralhsp@gmail.com</a></p>
+               <p>Email: <a className="footer-contact-email" href="mailto:nogueiralhsp@gmail.com">nogueiralhsp@gmail.com</a></p>
           </div>
 
           <div className="footer-notes">
