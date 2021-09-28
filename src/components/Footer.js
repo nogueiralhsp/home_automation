@@ -2,9 +2,21 @@ import React from 'react'
 
 const Footer = () => (
      <div className="footer">
-          <p>Contact</p>
-          <p>Phone: 12 1234 123456</p>
-          <p>Email: nogueiralhsp@gmail.com</p>
+          <div className="footer-contacts">
+               <h4>Contact</h4>
+               <p>Phone: 074 8227 5310</p>
+               <p>Email: <a href="mailto:nogueiralhsp@gmail.com">nogueiralhsp@gmail.com</a></p>
+          </div>
+
+          <div className="footer-notes">
+               <h4>Find more at </h4>
+               <p>
+                    <a href="https://lhpinto-portifolio.vercel.app/">Luiz Henrique Pinto page <br />
+                         https://lhpinto-portifolio.vercel.app/
+                    </a>
+               </p>
+
+          </div>
      </div>
 );
 

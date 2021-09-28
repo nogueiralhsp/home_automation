@@ -1,5 +1,22 @@
 .footer {
-     color:white;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around;
+     color: $white;
      bottom: 50px;
      padding-top: 10px
+}
+
+.footer-contacts a{
+     
+     // text-decoration: none;
+     background-color: $brown;
+     color: $white;
+     padding: .3rem;
+     border-radius: .3rem;
+     
+}
+.footer-notes a{
+     text-decoration: none;
+     color: $white;
 }
