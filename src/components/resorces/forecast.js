@@ -92,29 +92,31 @@ class NavigationMenu extends React.Component {
                     <h4>{this.state.currentTemperature} °C {this.state.condition.text}<img src={this.state.condition.icon} alt="icon" height='25px' /> </h4>
 
                 </div>
-                <div className="forcast-table">
+                <div className="forcast-table-container">
                     <div className="forcast-table-title">
                         <h3>Weather Forecast Next 3 Days</h3>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{moment(forecast.date).format('dddd')}</th>)}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>Min Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.mintemp_c}°C</th>)}
-                            </tr>
-                            <tr>
-                                <th>Max Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.maxtemp_c}°C <br /> <img src={forecast.daily_condition.icon} alt="weather icon" height='20px' /></th>)}
-                            </tr>
-                            <tr>
-                                <th>Rain Chance</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.daily_chance_of_rain}%</th>)}
-                            </tr>
-                        </tbody>
+                    <div className='forcast-table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{moment(forecast.date).format('dddd')}</th>)}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Min Temp</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.mintemp_c}°C</th>)}
+                                </tr>
+                                <tr>
+                                    <th>Max Temp <br /></th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.maxtemp_c}°C</th>)}
+                                </tr>
+                                <tr>
+                                    <th>Rain Chance</th>{this.state.forecast.map((forecast) => <th key={forecast.date.toString()}>{forecast.daily_chance_of_rain}% <img src={forecast.daily_condition.icon} alt="weather icon" height='20px' /></th>)}
+                                </tr>
+                            </tbody>
 
-                    </table>
+                        </table>
+                    </div>
 
 
                 </div>

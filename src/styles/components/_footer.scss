@@ -22,3 +22,10 @@
      text-decoration: none;
      color: $white;
 }
+
+@media (max-width: $desktop-breakpoint) { // mobile formating
+     .navigation-menu {
+         min-width: 80%;
+         flex-direction: column;
+     }
+ }

@@ -1,26 +1,32 @@
 //forcast square menu
-.forcast-square{
+.forcast-square {
     // border: solid red;
-    color:$white;
+    color: $white;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     margin-right: $vs-size;
     min-width: 300px;
 }
 
-.forcast-square-top *{
+.forcast-square-top * {
     margin: 0 0 0 0;
-    // text-align: center;
+    text-align: center;
 }
-
 
 .forcast-table-title {
     text-align: center;
     margin: 0;
     padding: 0;
 }
+
+.forcast-table {
+    display: flex;
+    justify-content: center;
+}
+
+
 .forcast-table th {
     min-width: 75px;
 }
