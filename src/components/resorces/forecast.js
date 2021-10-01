@@ -5,6 +5,7 @@ class NavigationMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            weatherAPIisDown: true,
             cityName: ``,
             condition: {
                 text: "",
@@ -37,7 +38,8 @@ class NavigationMenu extends React.Component {
                 if (!result.location) {
                     this.setState((prevState) => {
                         return {
-                            cityName: ' **** forcast api down **** ',
+                            weatherAPIisDown: true,
+                            cityName: '\n**** forcast api down ****',
                         };
                     });
                 } else {
@@ -79,7 +81,13 @@ class NavigationMenu extends React.Component {
         return (
             <div className='forcast-square'>
                 <div className='forcast-square-top'>
-                    <h3>Current Temperature in {this.state.cityName}</h3>
+                    <h3>Current Temperature in {this.state.weatherAPIisDown ?
+
+                        <div>
+                            {this.state.cityName}
+                        </div>
+                        :
+                        this.state.cityName}</h3>
                     <h4>{this.state.currentTemperature} °C {this.state.condition.text}<img src={this.state.condition.icon} alt="icon" height='25px' /> </h4>
 
                 </div>
