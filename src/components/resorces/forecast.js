@@ -45,6 +45,7 @@ class NavigationMenu extends React.Component {
                 } else {
                     this.setState((prevState) => {
                         return {
+                            weatherAPIisDown: false,
                             cityName: result.location.name,
                             currentTemperature: result.current.temp_c,
                             condition: {

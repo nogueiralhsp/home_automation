@@ -45,7 +45,7 @@ class NavigationMenu extends React.Component {
       <div className="navigation-menu">
 
         <div className="navigation-menu-message">
-          <h3> Good Morning! <br /> Bom dia! </h3>
+          <h3> Good Morning!</h3>
           <Messages />
         </div>
 

@@ -5,7 +5,7 @@
   border-color: #002c1b;
   background:   #004d4d;
   margin: $vs-size;
-  min-width: 250px;
+  min-width: 20rem;
   padding: $s-size;
 }
 
@@ -30,4 +30,11 @@
 .card-items h3{
   text-decoration: underline;
   text-underline-offset: .25rem;
+}
+
+@media (max-width: $desktop-breakpoint) { // mobile formating
+  .card_root {
+    width: 90%;
+  }
+  
 }
