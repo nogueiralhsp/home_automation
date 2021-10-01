@@ -254,7 +254,7 @@ class Garage extends React.Component {
             {'\u00A0'}Work Bench {this.state.lightWorkBench ? ' = On' : ' = Off'}
           </a>
           {/*turn all lights in the component off*/}
-          <a href=""
+          {this.state.lightOne === true || this.state.lightTwo === true || this.state.lightWorkBench ? <a href=""
             className='button'
             aria-disabled='true'
             onClick={(e) => {
@@ -271,8 +271,9 @@ class Garage extends React.Component {
 
             }}
           >
-            {'\u00A0'}Switch All Off
-          </a>
+            {'\u00A0'}Switch All Off {/*when any light is on it is the 'a' tag is enable */}
+          </a>:
+          <p className='button'>Switch All Off</p>} {/*when any light is on it is the 'a' tag is disable */}
         </div>
         <div className='card-items'>
           <h3>Doors</h3>
