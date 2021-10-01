@@ -10,10 +10,10 @@ class Garage extends React.Component {
       room_temperature: 100,
       lightOne: false,
       lightTwo: false,
-      lightWorkBench:false,
+      lightWorkBench: false,
       lightOneDeviceId: '6128d9c2274a6f001670e7b9',
       lightTwoDeviceId: '6148cbe49334480016839378',
-      lightWorkbenchDeviceId:'61542f1bd06971001641672f',
+      lightWorkbenchDeviceId: '61542f1bd06971001641672f',
       lightTwo: false,
       frontDoorOpen: true,
       backDoorOpen: true,
@@ -72,6 +72,7 @@ class Garage extends React.Component {
       .catch(error => console.log('error', error));
   }
 
+  //changes status on/off for light
   lightOneHandler() {
     this.lightOneUpdatedStatus()
     var requestOptions = {
@@ -122,6 +123,7 @@ class Garage extends React.Component {
       .catch(error => console.log('error', error));
   }
 
+  //changes status on/off for light
   lightTwoHandler() {
     this.lightTwoUpdatedStatus()
     var requestOptions = {
@@ -172,6 +174,7 @@ class Garage extends React.Component {
       .catch(error => console.log('error', error));
   }
 
+  //changes status on/off for light
   lightWorkbenchHandler() {
     this.lightWorkbenchUpdatedStatus()
     var requestOptions = {
@@ -213,7 +216,9 @@ class Garage extends React.Component {
           <p>Current Room Temperature <br />{this.state.room_temperature === 100 ? `loading...` : `${this.state.room_temperature} °C`}</p>
         </div>
         <div className='card-items'>
-          <h3>Lights</h3>
+          <div className='card-item-header'>
+            <h3>Lights</h3>
+          </div>
           <a href=""
             className='button'
             aria-disabled='true'
@@ -248,6 +253,26 @@ class Garage extends React.Component {
             <FaLightbulb className={this.state.lightWorkBench ? 'iconStatusOn ' : 'iconStatusOff '} />
             {'\u00A0'}Work Bench {this.state.lightWorkBench ? ' = On' : ' = Off'}
           </a>
+          {/*turn all lights in the component off*/}
+          <a href=""
+            className='button'
+            aria-disabled='true'
+            onClick={(e) => {
+              e.preventDefault()
+              if (this.state.lightOne === true) {
+                this.lightOneHandler()
+              }
+              if (this.state.lightTwo === true) {
+                this.lightTwoHandler()
+              }
+              if (this.state.lightWorkBench === true) {
+                this.lightWorkbenchHandler()
+              }
+
+            }}
+          >
+            {'\u00A0'}Switch All Off
+          </a>
         </div>
         <div className='card-items'>
           <h3>Doors</h3>
@@ -281,7 +306,6 @@ class Garage extends React.Component {
             <FaDoorOpen className={this.state.backDoorOpen ? ' iconStatusOn ' : ' iconStatusOff'} />
             {'\u00A0'}Back Door {this.state.backDoorOpen ? ' = Closed' : ' = Opened'}
           </a>
-
         </div>
       </div>
     );
