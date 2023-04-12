@@ -36,23 +36,23 @@ class Garage extends React.Component {
 
   // reads the last post from data base and updates temperatyre on screen, time set on set
   temperatureUpdate() {
-    console.log('light 1 pressed');
-    // var requestOptions = {
-    //   method: 'GET',
-    //   redirect: 'follow'
-    // };
+    console.log('temperatureUpdate() running');
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
 
-    // fetch(`${process.env.REACT_APP_API_URL}/device/611e35ada7eb2f23a5a86999`, requestOptions)
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     const current_room_temperature = result.statusValue
-    //     this.setState((prevState) => {
-    //       return {
-    //         room_temperature: current_room_temperature
-    //       }
-    //     })
-    //   })
-    //   .catch(error => console.log('error', error));
+    fetch(`${process.env.REACT_APP_API_URL}/device/611e35ada7eb2f23a5a86999`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        const current_room_temperature = result.statusValue
+        this.setState((prevState) => {
+          return {
+            room_temperature: current_room_temperature
+          }
+        })
+      })
+      .catch(error => console.log('error', error));
   }
 
   // lightOneUpdatedStatus() {
@@ -226,7 +226,7 @@ class Garage extends React.Component {
             aria-disabled='true'
             onClick={(e) => {
               e.preventDefault()
-              this.lightOneHandler()
+              // this.lightOneHandler()
               this.temperatureUpdate()
             }}
           >
@@ -274,8 +274,8 @@ class Garage extends React.Component {
             }}
           >
             {'\u00A0'}Switch All Off {/*when any light is on it is the 'a' tag is enable */}
-          </a>:
-          <p className='button'>Switch All Off</p>} {/*when any light is on it is the 'a' tag is disable */}
+          </a> :
+            <p className='button'>Switch All Off</p>} {/*when any light is on it is the 'a' tag is disable */}
         </div>
         <div className='card-items'>
           <h3>Doors</h3>
