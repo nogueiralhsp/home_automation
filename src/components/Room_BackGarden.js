@@ -16,10 +16,10 @@ class BackGarden extends React.Component {
   }
 
   componentDidMount() {
-    this.gardenUpperLevelLightStatus()
+    // this.gardenUpperLevelLightStatus()
 
     this.interval = setInterval(() => {//calls for temperature on start of the page
-      this.gardenUpperLevelLightStatus()
+      // this.gardenUpperLevelLightStatus()
     }, UPDATE_MS);
   }
 
