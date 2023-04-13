@@ -46,6 +46,7 @@ class Garage extends React.Component {
       .then(response => response.json())
       .then(result => {
         const current_room_temperature = result.statusValue
+        console.log(current_room_temperature);
         this.setState((prevState) => {
           return {
             room_temperature: current_room_temperature
