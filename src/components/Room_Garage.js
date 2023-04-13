@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa';
-const UPDATE_MS = 20000
+const UPDATE_MS = 2000
+
+
 
 class Garage extends React.Component {
 
@@ -21,22 +23,20 @@ class Garage extends React.Component {
   }
 
   componentDidMount() {
-    // this.lightOneUpdatedStatus()
-    // this.lightTwoUpdatedStatus()
+    this.lightOneUpdatedStatus()
+    this.lightTwoUpdatedStatus()
     // this.lightWorkbenchUpdatedStatus()
     // this.temperatureUpdate()//calls for temperature on start of the page
     this.interval = setInterval(() => {
-      console.log('interval');
       this.temperatureUpdate()
-      // this.lightOneUpdatedStatus()
-      // this.lightTwoUpdatedStatus()
-      // this.lightWorkbenchUpdatedStatus()
+      this.lightOneUpdatedStatus()
+      this.lightTwoUpdatedStatus()
+      this.lightWorkbenchUpdatedStatus()
     }, UPDATE_MS)//calls refresh every UPDATE_MS milliseconds
   }
 
   // reads the last post from data base and updates temperatyre on screen, time set on set
   temperatureUpdate() {
-    console.log('temperatureUpdate() running');
     var requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -55,157 +55,157 @@ class Garage extends React.Component {
       .catch(error => console.log('error', error));
   }
 
-  // lightOneUpdatedStatus() {
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     redirect: 'follow'
-  //   };
+  lightOneUpdatedStatus() {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
 
-  //   fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightOneDeviceId}`, requestOptions)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       // console.log(result)
-  //       this.setState(() => {
-  //         return {
-  //           lightOne: result.statusBooleanValue
-  //         }
-  //       })
-  //     })
-  //     .catch(error => console.log('error', error));
-  // }
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.lightOneDeviceId}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        // console.log(result)
+        this.setState(() => {
+          return {
+            lightOne: result.statusBooleanValue
+          }
+        })
+      })
+      .catch(error => console.log('error', error));
+  }
 
-  // //changes status on/off for light
-  // lightOneHandler() {
-  //   this.lightOneUpdatedStatus()
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     redirect: 'follow'
-  //   };
+  //changes status on/off for light
+  lightOneHandler() {
+    this.lightOneUpdatedStatus()
+    var requestOptions = {
+      method: 'POST',
+      redirect: 'follow'
+    };
 
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  //   var raw = JSON.stringify({
-  //     "device": this.state.lightOneDeviceId,
-  //     "statusValue": "non",
-  //     "statusBooleanValue": !this.state.lightOne,
-  //     "statusType": "digital"
-  //   });
+    var raw = JSON.stringify({
+      "device": this.state.lightOneDeviceId,
+      "statusValue": "non",
+      "statusBooleanValue": !this.state.lightOne,
+      "statusType": "digital"
+    });
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow'
-  //   };
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
 
-  //   fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
-  //     .then(response => response.text())
-  //     // .then(result => console.log(result))
-  //     .catch(error => console.log('error', error));
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
+      .then(response => response.text())
+      // .then(result => console.log(result))
+      .catch(error => console.log('error', error));
 
-  // }
+  }
 
-  // lightTwoUpdatedStatus() {
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     redirect: 'follow'
-  //   };
+  lightTwoUpdatedStatus() {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
 
-  //   fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightTwoDeviceId}`, requestOptions)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       // console.log(result)
-  //       this.setState(() => {
-  //         return {
-  //           lightTwo: result.statusBooleanValue
-  //         }
-  //       })
-  //     })
-  //     .catch(error => console.log('error', error));
-  // }
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.lightTwoDeviceId}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        // console.log(result)
+        this.setState(() => {
+          return {
+            lightTwo: result.statusBooleanValue
+          }
+        })
+      })
+      .catch(error => console.log('error', error));
+  }
 
-  // //changes status on/off for light
-  // lightTwoHandler() {
-  //   this.lightTwoUpdatedStatus()
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     redirect: 'follow'
-  //   };
+  //changes status on/off for light
+  lightTwoHandler() {
+    this.lightTwoUpdatedStatus()
+    var requestOptions = {
+      method: 'POST',
+      redirect: 'follow'
+    };
 
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  //   var raw = JSON.stringify({
-  //     "device": this.state.lightTwoDeviceId,
-  //     "statusValue": "non",
-  //     "statusBooleanValue": !this.state.lightTwo,
-  //     "statusType": "digital"
-  //   });
+    var raw = JSON.stringify({
+      "device": this.state.lightTwoDeviceId,
+      "statusValue": "non",
+      "statusBooleanValue": !this.state.lightTwo,
+      "statusType": "digital"
+    });
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow'
-  //   };
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
 
-  //   fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
-  //     .then(response => response.text())
-  //     // .then(result => console.log(result))
-  //     .catch(error => console.log('error', error));
-  // }
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
+      .then(response => response.text())
+      // .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
 
 
-  // lightWorkbenchUpdatedStatus() {
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     redirect: 'follow'
-  //   };
+  lightWorkbenchUpdatedStatus() {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
 
-  //   fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightWorkbenchDeviceId}`, requestOptions)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       // console.log(result)
-  //       this.setState(() => {
-  //         return {
-  //           lightWorkBench: result.statusBooleanValue
-  //         }
-  //       })
-  //     })
-  //     .catch(error => console.log('error', error));
-  // }
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.lightWorkbenchDeviceId}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        // console.log(result)
+        this.setState(() => {
+          return {
+            lightWorkBench: result.statusBooleanValue
+          }
+        })
+      })
+      .catch(error => console.log('error', error));
+  }
 
-  // //changes status on/off for light
-  // lightWorkbenchHandler() {
-  //   this.lightWorkbenchUpdatedStatus()
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     redirect: 'follow'
-  //   };
+  //changes status on/off for light
+  lightWorkbenchHandler() {
+    this.lightWorkbenchUpdatedStatus()
+    var requestOptions = {
+      method: 'POST',
+      redirect: 'follow'
+    };
 
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  //   var raw = JSON.stringify({
-  //     "device": this.state.lightWorkbenchDeviceId,
-  //     "statusValue": "non",
-  //     "statusBooleanValue": !this.state.lightWorkBench,
-  //     "statusType": "digital"
-  //   });
+    var raw = JSON.stringify({
+      "device": this.state.lightWorkbenchDeviceId,
+      "statusValue": "non",
+      "statusBooleanValue": !this.state.lightWorkBench,
+      "statusType": "digital"
+    });
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow'
-  //   };
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
 
-  //   fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
-  //     .then(response => response.text())
-  //     // .then(result => console.log(result))
-  //     .catch(error => console.log('error', error));
-  // }
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
+      .then(response => response.text())
+      // .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
 
   render() {
     return (
