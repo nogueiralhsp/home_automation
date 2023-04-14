@@ -31,7 +31,7 @@ class BackGarden extends React.Component {
       redirect: 'follow'
     };
 
-    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.gardenUpperLevelLightId}`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.gardenUpperLevelLightId}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         // console.log(result.statusBooleanValue)
@@ -63,7 +63,7 @@ class BackGarden extends React.Component {
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
       .then(response => response.text())
       // .then(result => console.log(result))
       .catch(error => console.log('error', error));
