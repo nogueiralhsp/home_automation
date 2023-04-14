@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa';
-const UPDATE_MS = 10000
+const UPDATE_MS = 25000
 
 
 
