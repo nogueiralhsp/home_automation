@@ -1,10 +1,11 @@
 import React from 'react'
-import { LoginUser } from './index'
+import { Forcast, LoginUser } from './index'
 
 
 const Header = () => (
      <header className="header">
           <div>
+               <Forcast />
           </div>
           <div>
                <LoginUser />
