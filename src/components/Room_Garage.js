@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { FaLightbulb, FaDoorClosed, FaDoorOpen } from 'react-icons/fa';
-const UPDATE_MS = 2000
+const UPDATE_MS = 25000
+
+
 
 class Garage extends React.Component {
 
@@ -22,8 +24,8 @@ class Garage extends React.Component {
   componentDidMount() {
     this.lightOneUpdatedStatus()
     this.lightTwoUpdatedStatus()
-    this.lightWorkbenchUpdatedStatus()
-    this.temperatureUpdate()//calls for temperature on start of the page
+    // this.lightWorkbenchUpdatedStatus()
+    // this.temperatureUpdate()//calls for temperature on start of the page
     this.interval = setInterval(() => {
       this.temperatureUpdate()
       this.lightOneUpdatedStatus()
@@ -223,8 +225,8 @@ class Garage extends React.Component {
             aria-disabled='true'
             onClick={(e) => {
               e.preventDefault()
-              this.lightOneHandler()
-
+              // this.lightOneHandler()
+              this.temperatureUpdate()
             }}
           >
             <FaLightbulb className={this.state.lightOne ? 'iconStatusOn' : 'iconStatusOff'} />
@@ -271,8 +273,8 @@ class Garage extends React.Component {
             }}
           >
             {'\u00A0'}Switch All Off {/*when any light is on it is the 'a' tag is enable */}
-          </a>:
-          <p className='button'>Switch All Off</p>} {/*when any light is on it is the 'a' tag is disable */}
+          </a> :
+            <p className='button'>Switch All Off</p>} {/*when any light is on it is the 'a' tag is disable */}
         </div>
         <div className='card-items'>
           <h3>Doors</h3>

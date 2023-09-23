@@ -5,8 +5,7 @@ import {
     APIContent,
     Content,
     Footer,
-    Header,
-    NavigationMenu
+    Header
 } from '../components'
 
 const AppRouter = () => (
@@ -14,7 +13,6 @@ const AppRouter = () => (
         <div>
             <Header />
         </div>
-        <NavigationMenu />
         <div>
             <Content />
         </div>
