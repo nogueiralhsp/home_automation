@@ -14,7 +14,6 @@ class Garage extends React.Component {
       lightOneDeviceId: '6128d9c2274a6f001670e7b9',
       lightTwoDeviceId: '6148cbe49334480016839378',
       lightWorkbenchDeviceId: '61542f1bd06971001641672f',
-      lightTwo: false,
       frontDoorOpen: true,
       backDoorOpen: true,
     }
@@ -40,7 +39,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/device/611e35ada7eb2f23a5a86999", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/611e35ada7eb2f23a5a86999`, requestOptions)
       .then(response => response.json())
       .then(result => {
         const current_room_temperature = result.statusValue
@@ -59,7 +58,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightOneDeviceId}`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.lightOneDeviceId}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         // console.log(result)
@@ -97,7 +96,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
       .then(response => response.text())
       // .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -110,7 +109,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightTwoDeviceId}`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.lightTwoDeviceId}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         // console.log(result)
@@ -148,7 +147,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
       .then(response => response.text())
       // .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -161,7 +160,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch(`https://my-home-automation-api.herokuapp.com/device/${this.state.lightWorkbenchDeviceId}`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/${this.state.lightWorkbenchDeviceId}`, requestOptions)
       .then(response => response.json())
       .then(result => {
         // console.log(result)
@@ -199,7 +198,7 @@ class Garage extends React.Component {
       redirect: 'follow'
     };
 
-    fetch("https://my-home-automation-api.herokuapp.com/device/status", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/device/status`, requestOptions)
       .then(response => response.text())
       // .then(result => console.log(result))
       .catch(error => console.log('error', error));
